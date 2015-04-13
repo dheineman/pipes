@@ -29,10 +29,7 @@ var Pipe = function(){
 	
 	this.rotate = function()
 	{
-		// TODO: Rotate once in clockwise direction instead of 3 times counter clockwise
-		this.connections.splice(this.connections.length, 0, this.connections.splice(0, 1)[0]);
-		this.connections.splice(this.connections.length, 0, this.connections.splice(0, 1)[0]);
-		this.connections.splice(this.connections.length, 0, this.connections.splice(0, 1)[0]);
+		this.connections.splice(0, 0, this.connections.splice((this.connections.length-1), 1)[0]);
 	}
 }
 /**
