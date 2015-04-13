@@ -18,7 +18,8 @@ var Pipe = function(){
 	};
 
     /**
-     *
+     * Get the neighbouring pipe in the given direction
+	 *
      * @param {grid.direction} direction
      */
     this.getNeighbour = function(direction) {
@@ -67,6 +68,9 @@ var grid = {
         UP: 0
     },
 	
+	/**
+	  * Grid initialization
+	  */
 	init: function() {
 		this.initPipes(5);
 		this.buildPipes();
@@ -74,12 +78,25 @@ var grid = {
 		this.checkPipes();
 		this.draw();
 	},
+	
+	/**
+	  * Get the pipe on the grid on the given X and Y
+	  *
+	  * @param {Number} x
+	  * @param {Number} y
+	  */
     getPipe: function(x, y) {
         if(typeof this.pipes[x] !== "undefined" && typeof this.pipes[x][y] !== "undefined") {
             return this.pipes[x][y];
         }
         return null;
     },
+	
+	/**
+	  * Initialize all pipes in the grid
+	  *
+	  * @param {Number} size
+	  */
     initPipes: function(size) {
         this.size = size;
         for(x = 1; x <= size; x++) {
@@ -93,6 +110,10 @@ var grid = {
             }
         }
     },
+	
+	/**
+	  * Build the connections for all pipes
+	  */
     buildPipes: function() {
         // Define variables
         var total_pipes = this.size * this.size;
@@ -153,6 +174,10 @@ var grid = {
             }
         }
     },
+	
+	/**
+	  * Scramble all pipes by rotating them a random amount of times
+	  */
     scramblePipes: function() {
         for (x = 1; x < this.pipes.length; x++) {
             for (y = 1; y < this.pipes.length; y++) {
@@ -165,6 +190,10 @@ var grid = {
             }
         }
     },
+	
+	/**
+	  * Deactivate all pipes
+	  */
     disablePipes: function() {
         for (x = 1; x < this.pipes.length; x++) {
             for (y = 1; y < this.pipes.length; y++) {
@@ -173,6 +202,10 @@ var grid = {
             }
         }
     },
+	
+	/**
+	  * Check all pipes to see if they are connected to an active pipe
+	  */
     checkPipes: function() {
         connected_pipes = [];
         pipes_to_check = [];
@@ -243,6 +276,10 @@ var grid = {
             console.log("Winner");
         }
     },
+	
+	/**
+	  * Draw the grid on the page
+	  */
     draw: function() {
         var grid_div = document.getElementById("grid");
         grid_div.innerHTML = '';
