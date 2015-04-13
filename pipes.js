@@ -194,7 +194,7 @@ var grid = {
 	/**
 	  * Deactivate all pipes
 	  */
-    disablePipes: function() {
+    deactivatePipes: function() {
         for (x = 1; x < this.pipes.length; x++) {
             for (y = 1; y < this.pipes.length; y++) {
                 pipe = this.pipes[x][y];
@@ -211,7 +211,7 @@ var grid = {
         pipes_to_check = [];
 
         // Disable all pipes
-        this.disablePipes();
+        this.deactivatePipes();
 
         // Get the center pipe, set is to active, an add it to the set to be checked
         var center_pipe = this.getPipe(Math.ceil(this.size/2), Math.ceil(this.size/2));
