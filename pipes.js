@@ -89,7 +89,6 @@ var grid = {
         if(typeof this.pipes[x] !== "undefined" && typeof this.pipes[x][y] !== "undefined") {
             return this.pipes[x][y];
         }
-        return null;
     },
 	
 	/**
