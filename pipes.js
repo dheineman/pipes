@@ -4,28 +4,23 @@ var Pipe = function(){
 	
 	this.active = 0;
 	
-	this.UP = 0;
-	this.RIGHT = 1;
-	this.DOWN = 2;
-	this.LEFT = 3;
-	
 	// Up, Right, Down, Left
 	this.connections = Array.apply(null, new Array(4)).map(Number.prototype.valueOf,0);
 	
 	this.isActive = function()
 	{
-		return (this.active === 1 ? true : false);
-	}
+		return this.active === 1;
+	};
 	
 	this.setActive = function(active)
 	{
 		this.active = (active ? 1 : 0);
-	}
+	};
 	
 	this.hasConnection = function(direction) 
 	{
-		return (this.connections[direction] === 1 ? true : false);
-	}
+		return this.connections[direction] === 1;
+	};
 	
 	this.rotate = function()
 	{
@@ -41,6 +36,13 @@ var grid = {
 	size: 0,
 	
 	pipes: [],
+
+    direction: {
+        DOWN: 2,
+        LEFT: 3,
+        RIGHT: 1,
+        UP: 0
+    },
 	
 	init: function() {
 		this.initPipes(5);
@@ -49,13 +51,11 @@ var grid = {
 		this.checkPipes();
 		this.draw();
 	},
-
     getPipe: function(x, y) {
         if(typeof this.pipes[x] !== "undefined" && typeof this.pipes[x][y] !== "undefined") {
             return this.pipes[x][y];
         }
     },
-
     initPipes: function(size) {
         this.size = size;
         for(x = 1; x <= size; x++) {
@@ -91,33 +91,33 @@ var grid = {
             var direction = Math.floor(Math.random() * 4);
 
             switch (direction) {
-                case pipe.UP:
+                case grid.direction.UP:
                     previous_row = this.pipes[pipe.x - 1];
                     if (typeof previous_row !== "undefined") {
                         pipe_2 = previous_row[pipe.y];
                     }
-                    reverse_direction = pipe.DOWN;
+                    reverse_direction = grid.direction.DOWN;
                     break;
-                case pipe.DOWN:
+                case grid.direction.DOWN:
                     next_row = this.pipes[pipe.x + 1];
                     if (typeof next_row !== "undefined") {
                         pipe_2 = next_row[pipe.y];
                     }
-                    reverse_direction = pipe.UP;
+                    reverse_direction = grid.direction.UP;
                     break;
-                case pipe.RIGHT:
+                case grid.direction.RIGHT:
                     row = this.pipes[pipe.x];
                     if (typeof row !== "undefined") {
                         pipe_2 = row[pipe.y + 1];
                     }
-                    reverse_direction = pipe.LEFT;
+                    reverse_direction = grid.direction.LEFT;
                     break;
-                case pipe.LEFT:
+                case grid.direction.LEFT:
                     row = this.pipes[pipe.x];
                     if (typeof row !== "undefined") {
                         pipe_2 = row[pipe.y - 1];
                     }
-                    reverse_direction = pipe.RIGHT;
+                    reverse_direction = grid.direction.RIGHT;
                     break;
             }
 
@@ -170,9 +170,9 @@ var grid = {
             var y = pipe.y
 
             // Check if this pipe has a connection up
-            if(pipe.hasConnection(pipe.UP)) {
+            if(pipe.hasConnection(grid.direction.UP)) {
                 var pipe_above = this.getPipe(x-1, y);
-                if(typeof pipe_above !== "undefined" && pipe_above.hasConnection(pipe.DOWN) && !pipe_above.isActive()) {
+                if(typeof pipe_above !== "undefined" && pipe_above.hasConnection(grid.direction.DOWN) && !pipe_above.isActive()) {
                     pipe_above.setActive(true);
 
                     connected_pipes.push(pipe_above);
@@ -181,9 +181,9 @@ var grid = {
             }
 
             // Check if this pipe has a connection down
-            if(pipe.hasConnection(pipe.DOWN)) {
+            if(pipe.hasConnection(grid.direction.DOWN)) {
                 var pipe_below = this.getPipe(x+1, y);
-                if(typeof pipe_below !== "undefined" && pipe_below.hasConnection(pipe.UP) && !pipe_below.isActive()) {
+                if(typeof pipe_below !== "undefined" && pipe_below.hasConnection(grid.direction.UP) && !pipe_below.isActive()) {
                     pipe_below.setActive(true);
 
                     connected_pipes.push(pipe_below);
@@ -192,9 +192,9 @@ var grid = {
             }
 
             // Check if this pipe has a connection right
-            if(pipe.hasConnection(pipe.RIGHT)) {
+            if(pipe.hasConnection(grid.direction.RIGHT)) {
                 var pipe_next = this.getPipe(x, y+1);
-                if(typeof pipe_next !== "undefined" && pipe_next.hasConnection(pipe.LEFT) && !pipe_next.isActive()) {
+                if(typeof pipe_next !== "undefined" && pipe_next.hasConnection(grid.direction.LEFT) && !pipe_next.isActive()) {
                     pipe_next.setActive(true);
 
                     connected_pipes.push(pipe_next);
@@ -203,9 +203,9 @@ var grid = {
             }
 
             // Check if the pipe has a connection left
-            if(pipe.hasConnection(pipe.LEFT)) {
+            if(pipe.hasConnection(grid.direction.LEFT)) {
                 var pipe_previous = this.getPipe(x, y-1);
-                if(typeof pipe_previous !== "undefined" && pipe_previous.hasConnection(pipe.RIGHT) && !pipe_previous.isActive()) {
+                if(typeof pipe_previous !== "undefined" && pipe_previous.hasConnection(grid.direction.RIGHT) && !pipe_previous.isActive()) {
                     pipe_previous.setActive(true);
 
                     connected_pipes.push(pipe_previous);
