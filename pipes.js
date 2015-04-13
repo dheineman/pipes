@@ -16,6 +16,29 @@ var Pipe = function(){
 	{
 		this.active = (active ? 1 : 0);
 	};
+
+    /**
+     *
+     * @param {grid.direction} direction
+     */
+    this.getNeighbour = function(direction) {
+        var dx = 0;
+        var dy = 0;
+
+        if(direction == grid.direction.RIGHT) {
+            dx = 1;
+        } else if(direction == grid.direction.LEFT) {
+            dx = -1;
+        }
+
+        if(direction == grid.direction.UP) {
+            dy = 1;
+        } else if(direction == grid.direction.DOWN) {
+            dy = -1;
+        }
+
+        return grid.getPipe(this.x + dx, this.y + dy);
+    };
 	
 	this.hasConnection = function(direction) 
 	{
@@ -55,6 +78,7 @@ var grid = {
         if(typeof this.pipes[x] !== "undefined" && typeof this.pipes[x][y] !== "undefined") {
             return this.pipes[x][y];
         }
+        return null;
     },
     initPipes: function(size) {
         this.size = size;
