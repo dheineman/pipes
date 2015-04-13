@@ -122,7 +122,7 @@ var grid = {
         var x = Math.ceil(this.size / 2);
         var y = Math.ceil(this.size / 2);
 
-        pipe = this.pipes[x][y];
+        pipe = this.getPipe(x, y);
         pipe.active = 1;
 
         connected_pipes.push(pipe);
@@ -136,31 +136,20 @@ var grid = {
 
             switch (direction) {
                 case grid.direction.UP:
-                    previous_row = this.pipes[pipe.x - 1];
-                    if (typeof previous_row !== "undefined") {
-                        pipe_2 = previous_row[pipe.y];
-                    }
+					pipe_2 = this.getPipe(pipe.x-1, pipe.y);
                     reverse_direction = grid.direction.DOWN;
                     break;
                 case grid.direction.DOWN:
-                    next_row = this.pipes[pipe.x + 1];
-                    if (typeof next_row !== "undefined") {
-                        pipe_2 = next_row[pipe.y];
-                    }
+					pipe_2 = this.getPipe(pipe.x+1, pipe.y);
                     reverse_direction = grid.direction.UP;
                     break;
                 case grid.direction.RIGHT:
-                    row = this.pipes[pipe.x];
-                    if (typeof row !== "undefined") {
-                        pipe_2 = row[pipe.y + 1];
-                    }
+ 
+					pipe_2 = this.getPipe(pipe.x, pipe.y+1);
                     reverse_direction = grid.direction.LEFT;
                     break;
                 case grid.direction.LEFT:
-                    row = this.pipes[pipe.x];
-                    if (typeof row !== "undefined") {
-                        pipe_2 = row[pipe.y - 1];
-                    }
+					pipe_2 = this.getPipe(pipe.x, pipe.y-1);
                     reverse_direction = grid.direction.RIGHT;
                     break;
             }
@@ -180,7 +169,7 @@ var grid = {
     scramblePipes: function() {
         for (x = 1; x < this.pipes.length; x++) {
             for (y = 1; y < this.pipes.length; y++) {
-                var pipe = this.pipes[x][y];
+                var pipe = this.getPipe(x, y);
                 var random = Math.floor(Math.random() * 4);
 
                 for (i = 0; i < random; i++) {
@@ -196,8 +185,7 @@ var grid = {
     deactivatePipes: function() {
         for (x = 1; x < this.pipes.length; x++) {
             for (y = 1; y < this.pipes.length; y++) {
-                pipe = this.pipes[x][y];
-                pipe.setActive(false);
+				this.getPipe(x, y).setActive(false);
             }
         }
     },
