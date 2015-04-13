@@ -71,8 +71,13 @@ var grid = {
 	/**
 	  * Grid initialization
 	  */
-	init: function() {
-		this.initPipes(5);
+	init: function(size) {
+		if(size % 2 == false) {
+			console.log("Cannot create grid with even number of rows/columns");
+			return;
+		}
+		
+		this.initPipes(size);
 		this.buildPipes();
 		this.scramblePipes();
 		this.checkPipes();
@@ -327,4 +332,4 @@ function rotatePipe(element)
     grid.draw();
 }
 
-grid.init();
+grid.init(5);
