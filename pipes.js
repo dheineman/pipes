@@ -141,29 +141,28 @@ var grid = {
 
             switch (direction) {
                 case grid.direction.UP:
-					pipe_2 = this.getPipe(pipe.x-1, pipe.y);
+					neighbor = this.getPipe(pipe.x-1, pipe.y);
                     reverse_direction = grid.direction.DOWN;
                     break;
                 case grid.direction.DOWN:
-					pipe_2 = this.getPipe(pipe.x+1, pipe.y);
+					neighbor = this.getPipe(pipe.x+1, pipe.y);
                     reverse_direction = grid.direction.UP;
                     break;
                 case grid.direction.RIGHT:
- 
-					pipe_2 = this.getPipe(pipe.x, pipe.y+1);
+					neighbor = this.getPipe(pipe.x, pipe.y+1);
                     reverse_direction = grid.direction.LEFT;
                     break;
                 case grid.direction.LEFT:
-					pipe_2 = this.getPipe(pipe.x, pipe.y-1);
+					neighbor = this.getPipe(pipe.x, pipe.y-1);
                     reverse_direction = grid.direction.RIGHT;
                     break;
             }
 
-            if (typeof pipe_2 != "undefined" && pipe_2.connections.indexOf(1) == -1) {
+            if (typeof neighbor != "undefined" && neighbor.connections.indexOf(1) == -1) {
                 pipe.connections[direction] = 1;
-                pipe_2.connections[reverse_direction] = 1;
+                neighbor.connections[reverse_direction] = 1;
 
-                connected_pipes.push(pipe_2);
+                connected_pipes.push(neighbor);
             }
         }
     },
