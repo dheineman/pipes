@@ -96,13 +96,24 @@ var grid = {
         }
     },
 	
+	getPipes: function() {
+		var pipes = [];
+		for(x in this.pipes) {
+			for(y in this.pipes[x]) {
+				pipes.push(this.getPipe(x, y));
+			}
+		}
+		return pipes;
+	},
+	
 	/**
 	  * Initialize all pipes in the grid
 	  *
 	  * @param {Number} size
 	  */
     initPipes: function(size) {
-        this.size = size;
+		this.size = size;
+		this.pipes = [];
         for(x = 1; x <= size; x++) {
             this.pipes[x] = [];
             for(y = 1; y <= size; y++) {
@@ -267,6 +278,47 @@ var grid = {
             console.log("Winner");
         }
     },
+	
+	/**
+	  * Save the grid to a JSON string
+	  */
+	save: function() {
+		var data = {};
+		data.size = this.size;
+		data.pipes = this.getPipes();
+		
+		save_data = JSON.stringify(data);
+		
+		console.log(save_data);
+	},
+	
+	/**
+	  * Load a grid from a JSON string
+	  */
+	load: function(save_data) {
+		
+		data = JSON.parse(save_data);
+		
+		grid.size = data.size;
+		grid.pipes = [];
+		
+		for(p in data.pipes) {
+			var pipe = new Pipe();
+			pipe.x = data.pipes[p].x;
+			pipe.y = data.pipes[p].y;
+			
+			pipe.connections = data.pipes[p].connections;
+			pipe.active = data.pipes[p].active;
+	
+			if(typeof grid.pipes[pipe.x] == "undefined") {
+				grid.pipes[pipe.x] = [];
+			}
+			grid.pipes[pipe.x][pipe.y] = pipe;
+		}
+		
+		grid.checkPipes();
+		grid.draw();
+	},
 	
 	/**
 	  * Draw the grid on the page
