@@ -68,6 +68,13 @@ var grid = {
         UP: 0
     },
 	
+	reverse_direction: {
+		2: 0,
+		3: 1,
+		1: 3,
+		0: 2
+	},
+	
 	/**
 	  * Grid initialization
 	  */
@@ -150,24 +157,8 @@ var grid = {
             // Create a random direction
             var direction = Math.floor(Math.random() * 4);
 
-            switch (direction) {
-                case grid.direction.UP:
-					neighbor = this.getPipe(pipe.x-1, pipe.y);
-                    reverse_direction = grid.direction.DOWN;
-                    break;
-                case grid.direction.DOWN:
-					neighbor = this.getPipe(pipe.x+1, pipe.y);
-                    reverse_direction = grid.direction.UP;
-                    break;
-                case grid.direction.RIGHT:
-					neighbor = this.getPipe(pipe.x, pipe.y+1);
-                    reverse_direction = grid.direction.LEFT;
-                    break;
-                case grid.direction.LEFT:
-					neighbor = this.getPipe(pipe.x, pipe.y-1);
-                    reverse_direction = grid.direction.RIGHT;
-                    break;
-            }
+			var neighbor = pipe.getNeighbour(direction);
+			var reverse_direction = this.reverse_direction[direction];
 
             if (typeof neighbor != "undefined" && neighbor.connections.indexOf(1) == -1) {
                 pipe.connections[direction] = 1;
