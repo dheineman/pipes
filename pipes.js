@@ -96,6 +96,16 @@ var grid = {
         }
     },
 	
+	getPipes: function() {
+		var pipes = [];
+		for(x in this.pipes) {
+			for(y in this.pipes[x]) {
+				pipes.push(this.getPipe(x, y));
+			}
+		}
+		return pipes;
+	},
+	
 	/**
 	  * Initialize all pipes in the grid
 	  *
