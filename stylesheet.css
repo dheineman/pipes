@@ -15,15 +15,14 @@
 	background-position: center;
 }
 
-.a{
-	background-color: rgba(0,0,255, 1);
-	overflow: hidden;
-}
-
 /* end points */
 .u {
 	background-image: url("images/end.png");
 	transform: rotate(180deg);
+}
+
+.u.a{
+	background-image: url("images/end_a.png");
 }
 
 .d {
@@ -31,9 +30,17 @@
 	transform: rotate(0deg);
 }
 
+.d.a{
+	background-image: url("images/end_a.png");
+}
+
 .r {
 	background-image: url("images/end.png");
 	transform: rotate(270deg);
+}
+
+.r.a{
+	background-image: url("images/end_a.png");
 }
 
 .l{
@@ -41,14 +48,26 @@
 	transform: rotate(90deg);
 }
 
+.l.a{
+	background-image: url("images/end_a.png");
+}
+
 /* straight */
 .u.d{
 	background-image: url("images/straight.png");
 }
 
+.u.d.a{
+	background-image: url("images/straight_a.png");
+}
+
 .l.r{
 	background-image: url("images/straight.png");
 	transform: rotate(90deg);
+}
+
+.l.r.a{
+	background-image: url("images/straight_a.png");
 }
 
 /* Corners */
@@ -57,9 +76,17 @@
 	transform: rotate(0deg);
 }
 
+.u.r.a{
+	background-image: url("images/corner_a.png");
+}
+
 .u.l{
 	background-image: url("images/corner.png");
 	transform: rotate(270deg);
+}
+
+.u.l.a{
+	background-image: url("images/corner_a.png");
 }
 
 .d.r{
@@ -67,9 +94,17 @@
 	transform: rotate(90deg);
 }
 
+.d.r.a{
+	background-image: url("images/corner_a.png");
+}
+
 .d.l{
 	background-image: url("images/corner.png");
 	transform: rotate(180deg);
+}
+
+.d.l.a{
+	background-image: url("images/corner_a.png");
 }
 
 /* T split */
@@ -78,9 +113,17 @@
 	transform: rotate(270deg);
 }
 
+.u.r.l.a{
+	background-image: url("images/tsplit_a.png");
+}
+
 .r.d.l{
 	background-image: url("images/tsplit.png");
 	transform: rotate(90deg);
+}
+
+.r.d.l.a{
+	background-image: url("images/tsplit_a.png");
 }
 
 .d.l.u{
@@ -88,9 +131,17 @@
 	transform: rotate(180deg);
 }
 
+.d.l.u.a{
+	background-image: url("images/tsplit_a.png");
+}
+
 .u.r.d{
 	background-image: url("images/tsplit.png");
 	transform: rotate(0deg);
+}
+
+.u.r.d.a{
+	background-image: url("images/tsplit_a.png");
 }
 
 /* Cross */
@@ -98,3 +149,6 @@
 	background-image: url("images/cross.png");
 }
 
+.u.r.d.l.a{
+	background-image: url("images/cross_a.png");
+}
