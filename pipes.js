@@ -112,7 +112,8 @@ var grid = {
 	  * @param {Number} size
 	  */
     initPipes: function(size) {
-        this.size = size;
+		this.size = size;
+		this.pipes = [];
         for(x = 1; x <= size; x++) {
             this.pipes[x] = [];
             for(y = 1; y <= size; y++) {
