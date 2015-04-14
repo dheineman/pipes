@@ -103,6 +103,9 @@ var grid = {
         }
     },
 	
+	/**
+	  * Get all pipes in the grid
+	  */
 	getPipes: function() {
 		var pipes = [];
 		for(x in this.pipes) {
