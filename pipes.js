@@ -283,35 +283,44 @@ var grid = {
 		
 		save_data = JSON.stringify(data);
 		
-		console.log(save_data);
+		if(typeof Storage !== "undefined") {
+			localStorage.setItem("saved-game", save_data);
+		}
 	},
 	
 	/**
 	  * Load a grid from a JSON string
 	  */
-	load: function(save_data) {
+	load: function() {
+		var save_data;
 		
-		data = JSON.parse(save_data);
-		
-		grid.size = data.size;
-		grid.pipes = [];
-		
-		for(p in data.pipes) {
-			var pipe = new Pipe();
-			pipe.x = data.pipes[p].x;
-			pipe.y = data.pipes[p].y;
-			
-			pipe.connections = data.pipes[p].connections;
-			pipe.active = data.pipes[p].active;
-	
-			if(typeof grid.pipes[pipe.x] == "undefined") {
-				grid.pipes[pipe.x] = [];
-			}
-			grid.pipes[pipe.x][pipe.y] = pipe;
+		if(typeof Storage !== "undefined") {
+			save_data = localStorage.getItem("saved-game");
 		}
 		
-		grid.checkPipes();
-		grid.draw();
+		if(save_data !== null) {
+			data = JSON.parse(save_data);
+			
+			grid.size = data.size;
+			grid.pipes = [];
+			
+			for(p in data.pipes) {
+				var pipe = new Pipe();
+				pipe.x = data.pipes[p].x;
+				pipe.y = data.pipes[p].y;
+				
+				pipe.connections = data.pipes[p].connections;
+				pipe.active = data.pipes[p].active;
+		
+				if(typeof grid.pipes[pipe.x] == "undefined") {
+					grid.pipes[pipe.x] = [];
+				}
+				grid.pipes[pipe.x][pipe.y] = pipe;
+			}
+			
+			grid.checkPipes();
+			grid.draw();
+		}
 	},
 	
 	/**
