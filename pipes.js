@@ -386,4 +386,19 @@ function rotatePipe(element)
     grid.draw();
 }
 
-grid.init(5);
+function newGame()
+{
+    grid.init(9);
+}
+
+function saveGame()
+{
+    grid.save();
+}
+
+function loadGame()
+{
+    grid.load();
+}
+
+grid.init(9);
