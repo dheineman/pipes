@@ -1,25 +1,25 @@
 var Pipe = function(){
-	this.x = 0;
-	this.y = 0;
-	
-	this.active = 0;
-	
-	// Up, Right, Down, Left
-	this.connections = Array.apply(null, new Array(4)).map(Number.prototype.valueOf,0);
-	
-	this.isActive = function()
-	{
-		return this.active === 1;
-	};
-	
-	this.setActive = function(active)
-	{
-		this.active = (active ? 1 : 0);
-	};
+    this.x = 0;
+    this.y = 0;
+    
+    this.active = 0;
+    
+    // Up, Right, Down, Left
+    this.connections = Array.apply(null, new Array(4)).map(Number.prototype.valueOf,0);
+    
+    this.isActive = function()
+    {
+        return this.active === 1;
+    };
+    
+    this.setActive = function(active)
+    {
+        this.active = (active ? 1 : 0);
+    };
 
     /**
      * Get the neighbouring pipe in the given direction
-	 *
+     *
      * @param {grid.direction} direction
      */
     this.getNeighbour = function(direction) {
@@ -40,26 +40,26 @@ var Pipe = function(){
 
         return grid.getPipe(this.x + dx, this.y + dy);
     };
-	
-	this.hasConnection = function(direction) 
-	{
-		return this.connections[direction] === 1;
-	};
-	
-	this.rotate = function()
-	{
-		this.connections.splice(0, 0, this.connections.splice((this.connections.length-1), 1)[0]);
-	}
+    
+    this.hasConnection = function(direction) 
+    {
+        return this.connections[direction] === 1;
+    };
+    
+    this.rotate = function()
+    {
+        this.connections.splice(0, 0, this.connections.splice((this.connections.length-1), 1)[0]);
+    }
 };
 
 /**
   * the grid
   */
 var grid = {
-	
-	size: 0,
-	
-	pipes: [],
+    
+    size: 0,
+    
+    pipes: [],
 
     direction: {
         DOWN: 2,
@@ -67,63 +67,63 @@ var grid = {
         RIGHT: 1,
         UP: 0
     },
-	
-	reverse_direction: {
-		2: 0,
-		3: 1,
-		1: 3,
-		0: 2
-	},
-	
-	/**
-	  * Grid initialization
-	  */
-	init: function(size) {
-		if(size % 2 == false) {
-			console.log("Cannot create grid with even number of rows/columns");
-			return;
-		}
-		
-		this.initPipes(size);
-		this.buildPipes();
-		this.scramblePipes();
-		this.checkPipes();
-		this.draw();
-	},
-	
-	/**
-	  * Get the pipe on the grid on the given X and Y
-	  *
-	  * @param {Number} x
-	  * @param {Number} y
-	  */
+    
+    reverse_direction: {
+        2: 0,
+        3: 1,
+        1: 3,
+        0: 2
+    },
+    
+    /**
+      * Grid initialization
+      */
+    init: function(size) {
+        if(size % 2 == false) {
+            console.log("Cannot create grid with even number of rows/columns");
+            return;
+        }
+        
+        this.initPipes(size);
+        this.buildPipes();
+        this.scramblePipes();
+        this.checkPipes();
+        this.draw();
+    },
+    
+    /**
+      * Get the pipe on the grid on the given X and Y
+      *
+      * @param {Number} x
+      * @param {Number} y
+      */
     getPipe: function(x, y) {
         if(typeof this.pipes[x] !== "undefined" && typeof this.pipes[x][y] !== "undefined") {
             return this.pipes[x][y];
         }
     },
-	
-	/**
-	  * Get all pipes in the grid
-	  */
-	getPipes: function() {
-		var pipes = [];
-		for(x in this.pipes) {
-			for(y in this.pipes[x]) {
-				pipes.push(this.getPipe(x, y));
-			}
-		}
-		return pipes;
-	},
-	
-	/**
-	  * Initialize all pipes in the grid
-	  *
-	  * @param {Number} size
-	  */
+    
+    /**
+      * Get all pipes in the grid
+      */
+    getPipes: function() {
+        var pipes = [];
+        for(x in this.pipes) {
+            for(y in this.pipes[x]) {
+                pipes.push(this.getPipe(x, y));
+            }
+        }
+        return pipes;
+    },
+    
+    /**
+      * Initialize all pipes in the grid
+      *
+      * @param {Number} size
+      */
     initPipes: function(size) {
-		this.size = size;
-		this.pipes = [];
+        this.size = size;
+        this.pipes = [];
         for(x = 1; x <= size; x++) {
             this.pipes[x] = [];
             for(y = 1; y <= size; y++) {
@@ -135,10 +135,10 @@ var grid = {
             }
         }
     },
-	
-	/**
-	  * Build the connections for all pipes
-	  */
+    
+    /**
+      * Build the connections for all pipes
+      */
     buildPipes: function() {
         // Define variables
         var total_pipes = this.size * this.size;
@@ -160,8 +160,8 @@ var grid = {
             // Create a random direction
             var direction = Math.floor(Math.random() * 4);
 
-			var neighbor = pipe.getNeighbour(direction);
-			var reverse_direction = this.reverse_direction[direction];
+            var neighbor = pipe.getNeighbour(direction);
+            var reverse_direction = this.reverse_direction[direction];
 
             if (typeof neighbor != "undefined" && neighbor.connections.indexOf(1) == -1) {
                 pipe.connections[direction] = 1;
@@ -171,10 +171,10 @@ var grid = {
             }
         }
     },
-	
-	/**
-	  * Scramble all pipes by rotating them a random amount of times
-	  */
+    
+    /**
+      * Scramble all pipes by rotating them a random amount of times
+      */
     scramblePipes: function() {
         for (x = 1; x < this.pipes.length; x++) {
             for (y = 1; y < this.pipes.length; y++) {
@@ -187,21 +187,21 @@ var grid = {
             }
         }
     },
-	
-	/**
-	  * Deactivate all pipes
-	  */
+    
+    /**
+      * Deactivate all pipes
+      */
     deactivatePipes: function() {
         for (x = 1; x < this.pipes.length; x++) {
             for (y = 1; y < this.pipes.length; y++) {
-				this.getPipe(x, y).setActive(false);
+                this.getPipe(x, y).setActive(false);
             }
         }
     },
-	
-	/**
-	  * Check all pipes to see if they are connected to an active pipe
-	  */
+    
+    /**
+      * Check all pipes to see if they are connected to an active pipe
+      */
     checkPipes: function() {
         connected_pipes = [];
         pipes_to_check = [];
@@ -272,60 +272,60 @@ var grid = {
             console.log("Winner");
         }
     },
-	
-	/**
-	  * Save the grid to a JSON string
-	  */
-	save: function() {
-		var data = {};
-		data.size = this.size;
-		data.pipes = this.getPipes();
-		
-		save_data = JSON.stringify(data);
-		
-		if(typeof Storage !== "undefined") {
-			localStorage.setItem("saved-game", save_data);
-		}
-	},
-	
-	/**
-	  * Load a grid from a JSON string
-	  */
-	load: function() {
-		var save_data;
-		
-		if(typeof Storage !== "undefined") {
-			save_data = localStorage.getItem("saved-game");
-		}
-		
-		if(save_data !== null) {
-			data = JSON.parse(save_data);
-			
-			grid.size = data.size;
-			grid.pipes = [];
-			
-			for(p in data.pipes) {
-				var pipe = new Pipe();
-				pipe.x = data.pipes[p].x;
-				pipe.y = data.pipes[p].y;
-				
-				pipe.connections = data.pipes[p].connections;
-				pipe.active = data.pipes[p].active;
-		
-				if(typeof grid.pipes[pipe.x] == "undefined") {
-					grid.pipes[pipe.x] = [];
-				}
-				grid.pipes[pipe.x][pipe.y] = pipe;
-			}
-			
-			grid.checkPipes();
-			grid.draw();
-		}
-	},
-	
-	/**
-	  * Draw the grid on the page
-	  */
+    
+    /**
+      * Save the grid to a JSON string
+      */
+    save: function() {
+        var data = {};
+        data.size = this.size;
+        data.pipes = this.getPipes();
+        
+        save_data = JSON.stringify(data);
+        
+        if(typeof Storage !== "undefined") {
+            localStorage.setItem("saved-game", save_data);
+        }
+    },
+    
+    /**
+      * Load a grid from a JSON string
+      */
+    load: function() {
+        var save_data;
+        
+        if(typeof Storage !== "undefined") {
+            save_data = localStorage.getItem("saved-game");
+        }
+        
+        if(save_data !== null) {
+            data = JSON.parse(save_data);
+            
+            grid.size = data.size;
+            grid.pipes = [];
+            
+            for(p in data.pipes) {
+                var pipe = new Pipe();
+                pipe.x = data.pipes[p].x;
+                pipe.y = data.pipes[p].y;
+                
+                pipe.connections = data.pipes[p].connections;
+                pipe.active = data.pipes[p].active;
+        
+                if(typeof grid.pipes[pipe.x] == "undefined") {
+                    grid.pipes[pipe.x] = [];
+                }
+                grid.pipes[pipe.x][pipe.y] = pipe;
+            }
+            
+            grid.checkPipes();
+            grid.draw();
+        }
+    },
+    
+    /**
+      * Draw the grid on the page
+      */
     draw: function() {
         var grid_div = document.getElementById("grid");
         grid_div.innerHTML = '';
@@ -378,8 +378,8 @@ var grid = {
 // Called when clicking a pipe
 function rotatePipe(element)
 {
-	var x = element.dataset.x;
-	var y = element.dataset.y;
+    var x = element.dataset.x;
+    var y = element.dataset.y;
 
     grid.getPipe(x,y).rotate();
     grid.checkPipes();
