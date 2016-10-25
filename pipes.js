@@ -7,13 +7,11 @@ var Pipe = function(){
     // Up, Right, Down, Left
     this.connections = Array.apply(null, new Array(4)).map(Number.prototype.valueOf,0);
     
-    this.isActive = function()
-    {
+    this.isActive = function() {
         return this.active === 1;
     };
     
-    this.setActive = function(active)
-    {
+    this.setActive = function(active) {
         this.active = (active ? 1 : 0);
     };
 
@@ -41,13 +39,11 @@ var Pipe = function(){
         return grid.getPipe(this.x + dx, this.y + dy);
     };
     
-    this.hasConnection = function(direction) 
-    {
+    this.hasConnection = function(direction) {
         return this.connections[direction] === 1;
     };
     
-    this.rotate = function()
-    {
+    this.rotate = function() {
         this.connections.splice(0, 0, this.connections.splice((this.connections.length-1), 1)[0]);
     }
 };
@@ -376,8 +372,7 @@ var grid = {
 };
 
 // Called when clicking a pipe
-function rotatePipe(element)
-{
+function rotatePipe(element) {
     var x = element.dataset.x;
     var y = element.dataset.y;
 
