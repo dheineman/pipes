@@ -3,152 +3,152 @@
 }
 
 .pipe{
-	font-size: 0px;
-	background-color: white;
-	display: inline-block;
-	
-	width: 28px;
-	height: 28px;
-	box-sizing: content-box;
-	
-	background-repeat: no-repeat;
-	background-position: center;
+    font-size: 0px;
+    background-color: white;
+    display: inline-block;
+
+    width: 28px;
+    height: 28px;
+    box-sizing: content-box;
+
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 /* end points */
 .u {
-	background-image: url("images/end.png");
-	transform: rotate(180deg);
+    background-image: url("images/end.png");
+    transform: rotate(180deg);
 }
 
 .u.a{
-	background-image: url("images/end_a.png");
+    background-image: url("images/end_a.png");
 }
 
 .d {
-	background-image: url("images/end.png");
-	transform: rotate(0deg);
+    background-image: url("images/end.png");
+    transform: rotate(0deg);
 }
 
 .d.a{
-	background-image: url("images/end_a.png");
+    background-image: url("images/end_a.png");
 }
 
 .r {
-	background-image: url("images/end.png");
-	transform: rotate(270deg);
+    background-image: url("images/end.png");
+    transform: rotate(270deg);
 }
 
 .r.a{
-	background-image: url("images/end_a.png");
+    background-image: url("images/end_a.png");
 }
 
 .l{
-	background-image: url("images/end.png");
-	transform: rotate(90deg);
+    background-image: url("images/end.png");
+    transform: rotate(90deg);
 }
 
 .l.a{
-	background-image: url("images/end_a.png");
+    background-image: url("images/end_a.png");
 }
 
 /* straight */
 .u.d{
-	background-image: url("images/straight.png");
+    background-image: url("images/straight.png");
 }
 
 .u.d.a{
-	background-image: url("images/straight_a.png");
+    background-image: url("images/straight_a.png");
 }
 
 .l.r{
-	background-image: url("images/straight.png");
-	transform: rotate(90deg);
+    background-image: url("images/straight.png");
+    transform: rotate(90deg);
 }
 
 .l.r.a{
-	background-image: url("images/straight_a.png");
+    background-image: url("images/straight_a.png");
 }
 
 /* Corners */
 .u.r{
-	background-image: url("images/corner.png");
-	transform: rotate(0deg);
+    background-image: url("images/corner.png");
+    transform: rotate(0deg);
 }
 
 .u.r.a{
-	background-image: url("images/corner_a.png");
+    background-image: url("images/corner_a.png");
 }
 
 .u.l{
-	background-image: url("images/corner.png");
-	transform: rotate(270deg);
+    background-image: url("images/corner.png");
+    transform: rotate(270deg);
 }
 
 .u.l.a{
-	background-image: url("images/corner_a.png");
+    background-image: url("images/corner_a.png");
 }
 
 .d.r{
-	background-image: url("images/corner.png");
-	transform: rotate(90deg);
+    background-image: url("images/corner.png");
+    transform: rotate(90deg);
 }
 
 .d.r.a{
-	background-image: url("images/corner_a.png");
+    background-image: url("images/corner_a.png");
 }
 
 .d.l{
-	background-image: url("images/corner.png");
-	transform: rotate(180deg);
+    background-image: url("images/corner.png");
+    transform: rotate(180deg);
 }
 
 .d.l.a{
-	background-image: url("images/corner_a.png");
+    background-image: url("images/corner_a.png");
 }
 
 /* T split */
 .u.r.l{
-	background-image: url("images/tsplit.png");
-	transform: rotate(270deg);
+    background-image: url("images/tsplit.png");
+    transform: rotate(270deg);
 }
 
 .u.r.l.a{
-	background-image: url("images/tsplit_a.png");
+    background-image: url("images/tsplit_a.png");
 }
 
 .r.d.l{
-	background-image: url("images/tsplit.png");
-	transform: rotate(90deg);
+    background-image: url("images/tsplit.png");
+    transform: rotate(90deg);
 }
 
 .r.d.l.a{
-	background-image: url("images/tsplit_a.png");
+    background-image: url("images/tsplit_a.png");
 }
 
 .d.l.u{
-	background-image: url("images/tsplit.png");
-	transform: rotate(180deg);
+    background-image: url("images/tsplit.png");
+    transform: rotate(180deg);
 }
 
 .d.l.u.a{
-	background-image: url("images/tsplit_a.png");
+    background-image: url("images/tsplit_a.png");
 }
 
 .u.r.d{
-	background-image: url("images/tsplit.png");
-	transform: rotate(0deg);
+    background-image: url("images/tsplit.png");
+    transform: rotate(0deg);
 }
 
 .u.r.d.a{
-	background-image: url("images/tsplit_a.png");
+    background-image: url("images/tsplit_a.png");
 }
 
 /* Cross */
 .u.r.d.l{
-	background-image: url("images/cross.png");
+    background-image: url("images/cross.png");
 }
 
 .u.r.d.l.a{
-	background-image: url("images/cross_a.png");
+    background-image: url("images/cross_a.png");
 }
